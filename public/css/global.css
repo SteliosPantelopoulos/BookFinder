@@ -1,0 +1,113 @@
+body{
+    margin: 0px;
+}
+
+/* HEADER */
+
+header{
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2px;
+}
+
+header #topHeader{
+    height: 30px;
+    font-weight: bolder;
+    border-bottom: 8px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header #topHeader h1 a{
+    font-size: 28px;
+    text-decoration: none;
+    color: black;
+}
+
+header #topHeader h1 a:hover{
+    font-size: 28px;
+    text-decoration: none;
+    color: black;
+}
+
+header #topHeader a{
+    font-size: 18px;
+    margin-right: 2%;
+    margin-bottom: -10px;
+    color: rgb(51,0,102);
+    text-decoration: none;
+}
+
+header #topHeader a:hover {
+    text-decoration: underline;
+    color: rgb(147,112,219);
+}
+
+header > h3{
+    margin-top: 0px;
+    background-color: rgb(123,104,238);
+    color: white;
+    font-size: 20px;
+}
+
+/* MAIN */
+
+main{
+    margin-top: 60px;
+}
+
+main #mainHeaders{
+    font-size: 22px;
+    color: rgb(123,104,238);
+    text-align: center;
+    line-height: 0px;
+}
+
+
+table{
+    text-align: left;
+    width: 50%;
+    margin-top: 100px;
+    margin-left: 25%;
+    border-spacing: 20px;
+}
+
+table th{
+    text-align:left;
+    color: rgb(123,104,238);
+    font-size: 18.5px;
+    width: 300px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+table td .tableAttributes{
+    min-width: 150px;
+    max-width: 150px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align: center;
+    margin-top: 150px;
+    border-top: 1px solid rgb(123,104,238);
+    background-color: rgb(230,230,250);
+}
+
+footer #footerInfo{
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer #footerInfo h4{
+    font-size: 17px;
+}
+
+footer #footerCopyrights{
+    margin-top:50px;
+    font-size: 13px
+}

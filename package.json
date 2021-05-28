@@ -1,0 +1,25 @@
+{
+  "name": "webdevelopment",
+  "version": "1.0.0",
+  "description": "Project fro webdev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteliosPantelopoulos/webDevelopment.git"
+  },
+  "author": "Stelios Pantelopoulos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteliosPantelopoulos/webDevelopment/issues"
+  },
+  "homepage": "https://github.com/SteliosPantelopoulos/webDevelopment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "xml-js": "^1.6.11"
+  }
+}

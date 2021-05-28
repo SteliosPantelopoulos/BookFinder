@@ -1,0 +1,19 @@
+main form{
+    width: 40%;
+    margin-top: 80px;
+    margin-left: 30%;
+    display:grid;
+}
+
+main form label{
+    margin-top:20px;
+    color: rgb(123,104,238);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+main form #submitUpdates{
+    width: 10%;
+    margin-left: 45%;
+    margin-top: 20px;
+}

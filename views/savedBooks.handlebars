@@ -1,0 +1,32 @@
+<div id="mainHeaders">
+    <h4>Saved books</h4>
+    <h5>Delete, update your saved books</h5>
+</div>
+
+<script id="resultsTemplate" type="text/x-handlebars-template">
+    <table id="results">
+        <tr>
+            <th>Book id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {{#each books}}
+        <tr>
+                        
+            <td class="tableAttributes">{{id}}</td>
+            <td class="tableAttributes">{{title}}</td>
+            <td class="tableAttributes">{{author}}</td>
+            <td><input type="image" src="../assets/settings.png" class="settingsButton" id="{{id}}" value = '{"id":"{{id}}", "title":"{{title}}",  "author":"{{author}}"}'></td>
+            <td><input type="image" src="../assets/delete.png" class="deleteButton" id="{{id}}" value = '{"id":"{{id}}", "title":"{{title}}",  "author":"{{author}}"}'></td>
+                        
+        </tr>
+        {{/each}}
+
+    </table>
+                    
+    </div>          
+</script>
+            
+<div id="booksDiv"></div>
