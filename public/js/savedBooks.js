@@ -10,7 +10,9 @@ window.onload= async function(){
   searchInput.addEventListener('keyup', () => {
       clearTimeout(typingTimer);
       if (searchInput.value) {
-          typingTimer = setTimeout(searchForBook, doneTypingInterval);
+        typingTimer = setTimeout(searchForBook, doneTypingInterval);
+      }else{
+        typingTimer = setTimeout(displaySavedBooks, doneTypingInterval);
       }
   });
 
