@@ -50,12 +50,29 @@ main #mainForm p:hover{
 
 /* MAIN BOOKS FOUND */
 
+main table{
+    width: 50%;
+    margin-left: 28%;
+}
+
+main table th{
+    width:15%;
+}
+
+main table td .tableAttributes{
+    min-width: 150px;
+    max-width: 150px;
+}
+
+main table .checkBox input{
+    margin-left: 25%;
+}
+
 main #booksDiv:not(:empty){
     text-align: center;
     margin-top: 100px;
     border-top: 1px solid rgb(123,104,238);
 }
-
 
 main #booksDiv h6.searchType {
     font-size: 20px;

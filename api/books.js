@@ -3,6 +3,30 @@ const router = express.Router();
 books = require("../booksSaved"); //DAO
 
 
+//search book
+router.get('/search=:searchString', (req,res) =>{
+    console.log(`Search request for ${req.params.searchString}`);
+    booksWithField = [];
+    for(book in books){
+        console.log(books[book].title);
+        console.log(books[book].title.includes(req.params.searchString));
+        console.log(books[book].author);
+        console.log(books[book].author.includes(req.params.searchString));
+        if(books[book].title.includes(req.params.searchString) || books[book].author.includes(req.params.searchString)){
+            booksWithField.push(books[book])
+        }
+    }
+
+    if(booksWithField.length > 0){
+        res.status(200).json({
+            msg: `Returned all books that contain ${req.params.searchString}`,
+            books: booksWithField
+        })
+    }else{
+        res.status(404).json({msg: `No books that contain ${req.params.searchString}`})
+    }
+})
+
 //get all books
 router.get('/', (req, res) => {
     console.log("Get request for all books");
@@ -106,5 +130,7 @@ router.delete('/:id', (req,res) =>{
         res.status(404).json({msg: `Book ${req.params.id} not found`});
     }  
 })
+
+
 
 module.exports = router;
