@@ -79,39 +79,45 @@ function getInputs(){
   
 }
 
-async function searchAuthor(data){
+async function searchAuthor(authorName){
   let responseJSON = {
     method: 'GET',
     headers: {
       'Accept': 'application/json'
     }
   }
-  let response = await fetch(urlAuthor + data, responseJSON);
+  let response = await fetch(urlAuthor + authorName, responseJSON);
 
   let booksReceived = {books: []};
 
   if(response.ok){
     let authorsList = (await response.json()).author;
-    for(let author in authorsList){
-      let authorWorks = authorsList[author].works;
-      if(authorWorks != null){
-        if(Array.isArray(authorWorks.works)){
-          for(let work in authorWorks.works){
-            let workData = await searchWorkId(authorWorks.works[work]);
+    if(authorsList != null){
+      for(let author in authorsList){
+        let authorWorks = authorsList[author].works;
+        if(authorWorks != null){
+          if(Array.isArray(authorWorks.works)){
+            for(let work in authorWorks.works){
+              let workData = await searchWorkId(authorWorks.works[work]);
+              booksReceived["books"].push({"author": workData.authorweb,"title": workData.titleshort, "id": workData.workid});
+            }
+          }else{
+            let workData = await searchWorkId(authorWorks.works);
             booksReceived["books"].push({"author": workData.authorweb,"title": workData.titleshort, "id": workData.workid});
           }
-        }else{
-          let workData = await searchWorkId(authorWorks.works);
-          booksReceived["books"].push({"author": workData.authorweb,"title": workData.titleshort, "id": workData.workid});
         }
       }
+      console.log("Found " + booksReceived.books.length + " books with author: " + authorName);
+    }else{
+      console.log("No authors found with name: " + authorName)
     }
+    
   }
 
   let source = document.querySelector("#searchTypeTemplate").innerHTML;
   let template = Handlebars.compile(source);
 
-  let searchType = {"authorname": data, "authorSearch": true};
+  let searchType = {"authorname": authorName, "authorSearch": true, "results": booksReceived.books.length};
   let html = template(searchType);
   document.querySelector("#booksDiv").innerHTML = html;
 
@@ -122,7 +128,7 @@ async function searchAuthor(data){
   createListenersButtons();
 }
   
-async function searchTitle(data){
+async function searchTitle(bookTitle){
   let responseJSON = {
     method: 'GET',
     headers: {
@@ -130,21 +136,26 @@ async function searchTitle(data){
     }
   }
   //get data from web api
-  let response = await fetch(urlWork + data, responseJSON);
+  let response = await fetch(urlWork + bookTitle, responseJSON);
 
   let booksReceived = {books: []};
 
   if(response.ok){
     let books = (await response.json()).work;
-
-    for(book in books){
-      booksReceived["books"].push({"author": books[book].authorweb,"title": books[book].titleshort, "id": books[book].workid});
+    if(books != null){
+      console.log("Found " + books.length + " books with title: " + bookTitle);
+      for(book in books){
+        booksReceived["books"].push({"author": books[book].authorweb,"title": books[book].titleshort, "id": books[book].workid});
+      }
+    }else{
+      console.log("No books found with title: " + bookTitle);
     }
+    
 
     let source = document.querySelector("#searchTypeTemplate").innerHTML;
     let template = Handlebars.compile(source);
 
-    let searchType = {"title": data, "authorSearch": false};
+    let searchType = {"title": bookTitle, "authorSearch": false, "results": booksReceived.books.length};
     let html = template(searchType);
     document.querySelector("#booksDiv").innerHTML = html;
 
@@ -203,8 +214,8 @@ async function getWorks(authorDetails){
 
 
 function resetInputs(){
-  authorInput.value = "Author's lastname...";
-  titleInput.value = "Book's title...";
+  authorInput.value = "";
+  titleInput.value = "";
 }
 
 

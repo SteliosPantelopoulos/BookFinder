@@ -14,14 +14,12 @@ async function displaySavedBooks(){
   };
   let response = await fetch(url + "/api/books/", responseJSON);
   let booksSaved = (await response.json()).books;
-  console.log(booksSaved);
   let worksDataJSON = '{"work": [] }';
   let obj = JSON.parse(worksDataJSON);
 
   for(book in booksSaved){
       obj["work"].push({"author": booksSaved[book].author, "title": booksSaved[book].title, "id": booksSaved[book].id});
   }
-  console.log(obj);
   let source = document.querySelector("#resultsTemplate").innerHTML;
   let template = Handlebars.compile(source);
   let html = template(obj);
