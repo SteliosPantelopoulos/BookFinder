@@ -1,6 +1,8 @@
 const url = "http://localhost:3000";
 
 window.onload= async function(){
+  displaySavedBooks()
+
   //get search input
   let typingTimer;
   let doneTypingInterval = 500;
@@ -12,36 +14,13 @@ window.onload= async function(){
       if (searchInput.value) {
         typingTimer = setTimeout(searchForBook, doneTypingInterval);
       }else{
+        //empty input in search bar
         typingTimer = setTimeout(displaySavedBooks, doneTypingInterval);
       }
   });
 
-  displaySavedBooks();    
+  ;    
 }
-
-
-async function searchForBook() {
-  console.log(searchInput.value);
-
-  let responseJSON = {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-          'Accept': 'application/json'
-    }
-  };
-  let response = await fetch(url + "/api/books/search=" + searchInput.value, responseJSON);
-  let booksSaved = await response.json();
-
-  let source = document.querySelector("#resultsTemplate").innerHTML;
-  let template = Handlebars.compile(source);
-  let html = template(booksSaved);
-  document.querySelector("#booksDiv").innerHTML = html;
-
-  createListenersButtons();
-}
-
-
 
 async function displaySavedBooks(){
   let responseJSON = {
@@ -52,6 +31,28 @@ async function displaySavedBooks(){
     }
   };
   let response = await fetch(url + "/api/books/", responseJSON);
+  let booksSaved = await response.json();
+
+  let source = document.querySelector("#resultsTemplate").innerHTML;
+  let template = Handlebars.compile(source);
+  let html = template(booksSaved);
+  document.querySelector("#booksDiv").innerHTML = html;
+
+  createListenersButtons();
+}
+
+async function searchForBook() {
+  //get request from server to receive books that contain the search input
+  console.log("Search for " + searchInput.value);
+  let responseJSON = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+          'Accept': 'application/json'
+    }
+  };
+
+  let response = await fetch(url + "/api/books/search=" + searchInput.value, responseJSON);
   let booksSaved = await response.json();
 
   let source = document.querySelector("#resultsTemplate").innerHTML;
@@ -82,6 +83,7 @@ function createListenersButtons(){
 }
   
 async function deleteBook(bookId){
+  //called when delete button is pressed
   let responseJSON = {
     method: 'DELETE',
     mode: 'cors',
@@ -91,20 +93,11 @@ async function deleteBook(bookId){
   };
   let response = await fetch(url + "/api/books/" + bookId, responseJSON);
 
-  getStatus(response);
-
   displaySavedBooks();
-
 }
 
 async function updateBook(bookId){
+  //called when update button is pressed
   localStorage.setItem("id",bookId);
   window.location.href = "savedBookUpdate.html";
-}
-
-
-
-async function getStatus(response){
-  let statusResponse = await response.json();
-  console.log(statusResponse.msg);
 }
