@@ -32,7 +32,6 @@ async function displaySavedBooks(){
   };
   let response = await fetch(url + "/api/books/", responseJSON);
   let booksSaved = await response.json();
-
   let source = document.querySelector("#resultsTemplate").innerHTML;
   let template = Handlebars.compile(source);
   let html = template(booksSaved);
@@ -67,8 +66,8 @@ function createListenersButtons(){
   let element = document.getElementsByClassName("deleteButton");
   for ( let i=0; i< element.length; i++){
     element[i].addEventListener("click", function(){
-      let bookId = JSON.parse(document.getElementById(this.id).value).id;
-      deleteBook(bookId);
+      let bookdbId = JSON.parse(document.getElementById(this.id).value).dbId;
+      deleteBook(bookdbId);
     });
   }
 
@@ -76,13 +75,14 @@ function createListenersButtons(){
   for (i=0; i< element.length; i++){
     element[i].addEventListener("click", function(){
       settingId = "settings" + this.id;
-      bookId = JSON.parse(document.getElementById(this.id).value).id;
-      updateBook(bookId);
+      bookdbId = JSON.parse(document.getElementById(this.id).value).dbId;
+      let bookId = JSON.parse(document.getElementById(this.id).value).id;
+      updateBook(bookdbId, bookId);
     });
   }
 }
   
-async function deleteBook(bookId){
+async function deleteBook(bookdbId){
   //called when delete button is pressed
   let responseJSON = {
     method: 'DELETE',
@@ -91,13 +91,15 @@ async function deleteBook(bookId){
       'Content-Type': 'application/json'
     }
   };
-  let response = await fetch(url + "/api/books/" + bookId, responseJSON);
-
+  let response = await fetch(url + "/api/books/" + bookdbId, responseJSON);
+  let responseJson = await response.json();
+  console.log(responseJson.msg);
   displaySavedBooks();
 }
 
-async function updateBook(bookId){
+async function updateBook(bookdbId, bookId){
   //called when update button is pressed
-  localStorage.setItem("id",bookId);
+  localStorage.setItem("dbId",bookdbId);
+  localStorage.setItem("id", bookId);
   window.location.href = "savedBookUpdate.html";
 }

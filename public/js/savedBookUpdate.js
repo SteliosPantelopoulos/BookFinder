@@ -1,13 +1,14 @@
 const url = "http://localhost:3000";
 
 window.onload = function(){
-  //receive book id 
-  const bookId = localStorage.getItem("id");
+  //receive book id
+  const bookId = localStorage.getItem("dbId");
+  const id = localStorage.getItem("id");
   localStorage.clear();
-  
+
   let source = document.querySelector("#bookIdTemplate").innerHTML;
   let template = Handlebars.compile(source);
-  let html = template({id: bookId});
+  let html = template({id: id});
   document.querySelector("#bookIdDiv").innerHTML = html;
 
   const button = document.getElementById("submitUpdates");

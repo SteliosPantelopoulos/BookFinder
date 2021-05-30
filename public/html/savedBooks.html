@@ -45,8 +45,8 @@
                         <td class="tableAttributes">{{title}}</td>
                         <td class="tableAttributes">{{author}}</td>
                         <td class="tableAttributes">{{description}}</td>
-                        <td><input type="image" src="../assets/settings.png" class="settingsButton" id="settings{{id}}" value = '{"id":"{{id}}", "title":"{{title}}",  "author":"{{author}}"}'></td>
-                        <td><input type="image" src="../assets/delete.png" class="deleteButton" id="delete{{id}}" value = '{"id":"{{id}}", "title":"{{title}}",  "author":"{{author}}"}'></td>
+                        <td><input type="image" src="../assets/settings.png" class="settingsButton" id="settings{{id}}" value = '{"id":"{{id}}", "title":"{{title}}", "author":"{{author}}", "dbId":"{{_id}}" }'></td>
+                        <td><input type="image" src="../assets/delete.png" class="deleteButton" id="delete{{id}}" value = '{"id":"{{id}}", "title":"{{title}}", "author":"{{author}}", "dbId":"{{_id}}" }'></td>
                                     
                     </tr>
                     {{/each}}
