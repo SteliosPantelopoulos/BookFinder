@@ -1,19 +1,19 @@
 # BookFinder
 
-BookFinder is a Web Development Project that implements a websit for book searching, storaging and editing.  
-Using the WEB API: Penguin Random House http://www.penguinrandomhouse.biz/webservices/rest/.
+BookFinder is a Web Development Project that implements a website where the user can search for a book, save it in his favourites list and edit it's information.  
+Built using the WEB API: Penguin Random House http://www.penguinrandomhouse.biz/webservices/rest/.
 
 ## Use cases
 
 - Search for a book by title or author.
 - Save book / books to favorites.
-- Editing the data of each saved book.
+- Edit the data of each saved book.
 - Search for a book in the favorites list.
 
 ## Design details
 
 - *Architecture* : the application is based on the Client-Server architecture.  
-  * The Client side is implemented as a set of HTML pages that incorporate JavaScript code.  
+  * The Client side is implemented as a set of HTML pages that incorporate vanilla JavaScript code.  
   * The server side is implemented as a Node.js application, which is called by
   the Customer via appropriate hyperlinks or HTTP requests using the Fetch API.  
 
