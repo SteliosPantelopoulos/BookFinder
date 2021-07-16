@@ -7,11 +7,11 @@ Built using the WEB API: Penguin Random House http://www.penguinrandomhouse.biz/
 
 In the main page as seen above the user can search for one or more books by entering the book's title or the book's author.
 
-![Search fields](/assetsREADME/searchBooks.png "Search for author with name Brown")
+![Search fields](/assetsREADME/searchBook.png "Search for author with name Brown")
 
 When the search button is pressed the client makes a request to the WEB API and displays the results.
 
-![Search results](/assetsREADME/searchBooksResults.png "Books with author name Brown")
+![Search results](/assetsREADME/searchBookResults.png "Books with author name Brown")
 
 The user then can save any of the books displayed and can access them in the Saved Books page.
 
